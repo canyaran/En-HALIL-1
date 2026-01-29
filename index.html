@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İngilizce 12 Tense Animasyon Öğretici</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🎬 İngilizce Tense Animasyon Öğretici</h1>
+            <p>Kelime giriniz ve 12 farklı tense'i animasyonlu olarak görünüz</p>
+        </header>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <div class="input-group">
+                <label for="verbInput">Fiil Giriniz (İnfinitive):</label>
+                <input
+                    type="text"
+                    id="verbInput"
+                    placeholder="Örn: play, eat, go, make..."
+                    autocomplete="off"
+                >
+                <button id="searchBtn" class="btn-primary">Çekimle</button>
+            </div>
+            <div id="errorMsg" class="error-msg"></div>
+        </div>
+
+        <!-- V1, V2, V3 Info Box -->
+        <div class="verb-info-box" id="verbInfoBox" style="display: none;">
+            <div class="verb-forms">
+                <div class="verb-form">
+                    <span class="form-label">V1 (Base Form)</span>
+                    <span class="form-value" id="v1-form"></span>
+                </div>
+                <div class="arrow">→</div>
+                <div class="verb-form">
+                    <span class="form-label">V2 (Past)</span>
+                    <span class="form-value" id="v2-form"></span>
+                </div>
+                <div class="arrow">→</div>
+                <div class="verb-form">
+                    <span class="form-label">V3 (Past Participle)</span>
+                    <span class="form-value" id="v3-form"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Three Column One-Page Layout -->
+        <div class="three-column-container">
+            <!-- PAST TENSES (GEÇMİŞ ZAMANLAR) - SOL -->
+            <div class="time-column past-column">
+                <h2 class="column-title">⏰ PAST<br><small>Geçmiş Zaman</small></h2>
+
+                <!-- Timeline Animation -->
+                <div class="timeline-container" data-column="past">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-marker">▼</div>
+                    <div class="timeline-points">
+                        <div class="timeline-point" data-tense="simple">
+                            <div class="point-dot"></div>
+                            <div class="point-label">Simple</div>
+                            <div class="point-aux"></div>
+                            <div class="point-verb"></div>
+                        </div>
+                        <div class="timeline-point" data-tense="continuous">
+                            <div class="point-dot"></div>
+                            <div class="point-label">Continuous</div>
+                            <div class="point-aux">was/were</div>
+                            <div class="point-verb"></div>
+                        </div>
+                        <div class="timeline-point" data-tense="perfect">
+                            <div class="point-dot"></div>
+                            <div class="point-label">Perfect</div>
+                            <div class="point-aux">had</div>
+                            <div class="point-verb"></div>
+                        </div>
+                        <div class="timeline-point" data-tense="perfect-continuous">
+                            <div class="point-dot"></div>
+                            <div class="point-label">Perf. Cont.</div>
+                            <div class="point-aux">had been</div>
+                            <div class="point-verb"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simple Past -->
+                <div class="tense-card" data-tense="simple-past">
+                    <div class="tense-header">
+                        <h3>Simple Past</h3>
+                        <span class="tense-badge">Basit Geçmiş</span>
+                    </div>
+                    <div class="grammar-box">
+                        <p class="grammar-rule"><strong>Kural:</strong> Fiil tabansı + -ed (düzenli) veya değişim (düzensiz)</p>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="subject">All subjects</div>
+                        <div class="animation-container">
+                            <span class="verb-animated" id="simple-past"></span>
+                        </div>
+                        <div class="sentence-structure" data-structure="simple-past"></div>
+                        <div class="example">Örn: I played / I went</div>
+                    </div>
+                </div>
+
+                <!-- Past Continuous -->
+                <div class="tense-card" data-tense="past-continuous">
+                    <div class="tense-header">
+                        <h3>Past Continuous</h3>
+                        <span class="tense-badge">Geçmişte Süregelen</span>
+                    </div>
+                    <div class="grammar-box">
+                        <p class="grammar-rule"><strong>Kural:</strong> was/were + Verb-ing</p>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="subject">I / He / She / It</div>
+                        <div class="animation-container">
+                            <span class="aux-word">was</span>
+                            <span class="verb-animated" id="past-continuous-1"></span>
+                        </div>
+                        <div class="sentence-structure" data-structure="past-continuous-1"></div>
+                        <div class="example">Örn: I was playing</div>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="subject">You / We / They</div>
+                        <div class="animation-container">
+                            <span class="aux-word">were</span>
+                            <span class="verb-animated" id="past-continuous-2"></span>
+                        </div>
+                        <div class="sentence-structure" data-structure="past-continuous-2"></div>
+                        <div class="example">Örn: They were playing</div>
+                    </div>
+                </div>
+
+                <!-- Past Perfect -->
+                <div class="tense-card" data-tense="past-perfect">
+                    <div class="tense-header">
+                        <h3>Past Perfect</h3>
+                        <span class="tense-badge">Geçmiş Zamanın Kıyımı</span>
+                    </div>
+                    <div class="grammar-box">
+                        <p class="grammar-rule"><strong>Kural:</strong> had + Past Participle</p>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="subject">All subjects</div>
+                        <div class="animation-container">
+                            <span class="aux-word">had</span>
+                            <span class="verb-animated" id="past-perfect"></span>
+                        </div>
+                        <div class="sentence-structure" data-structure="past-perfect"></div>
+                        <div class="example">Örn: I had played</div>
+                    </div>
+                </div>
+
+                <!-- Past Perfect Continuous -->
+                <div class="tense-card" data-tense="past-perfect-continuous">
+                    <div class="tense-header">
+                        <h3>Past Perfect Continuous</h3>
+                        <span class="tense-badge">Geçmiş Zamanın Sürekli Kıyımı</span>
+                    </div>
+                    <div class="grammar-box">
+                        <p class="grammar-rule"><strong>Kural:</strong> had + been + Verb-ing</p>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="subject">All subjects</div>
+                        <div class="animation-container">
+                            <span class="aux-word">had been</span>
+                            <span class="verb-animated" id="past-perfect-continuous"></span>
+                        </div>
+                        <div class="sentence-structure" data-structure="past-perfect-continuous"></div>
+                        <div class="example">Örn: I had been playing</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRESENT TENSES (ŞİMDİKİ ZAMANLAR) - ORTA -->
+            <div class="time-column present-column">
+                <h2 class="column-title">⏱️ PRESENT<br><small>Şimdiki Zaman</small></h2>
+
+                <!-- Timeline Animation -->
+                <div class="timeline-container" data-column="present">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-marker">▼</div>
+                    <div class="timeline-points">
+                        <div class="timeline-point" data-tense="simple">
+                            <div class="point-dot"></div>
+                            <div class="point-label">Simple</div>
+                            <div class="point-aux"></div>
+                            <div class="point-verb"></div>
+                        </div>
+                        <div class="timeline-point" data-tense="continuous">
+                            <div class="point-dot"></div>
+                            <div class="point-label">Continuous</div>
+                            <div class="point-aux">am/is/are</div>
+                            <div class="point-verb"></div>
+                        </div>
+                        <div class="timeline-point" data-tense="perfect">
+                            <div class="point-dot"></div>
+                            <div class="point-label">Perfect</div>
+                            <div class="point-aux">have/has</div>
+                            <div class="point-verb"></div>
+                        </div>
+                        <div class="timeline-point" data-tense="perfect-continuous">
+                            <div class="point-dot"></div>
+                            <div class="point-label">Perf. Cont.</div>
+                            <div class="point-aux">have/has been</div>
+                            <div class="point-verb"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simple Present -->
+                <div class="tense-card" data-tense="simple-present">
+                    <div class="tense-header">
+                        <h3>Simple Present</h3>
+                        <span class="tense-badge">Basit Şimdiki</span>
+                    </div>
+                    <div class="grammar-box">
+                        <p class="grammar-rule"><strong>Kural:</strong> Fiil tabansı (3. tekil şahısta -s, -es eklenir)</p>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="subject">I / You / We / They</div>
+                        <div class="animation-container">
+                            <span class="verb-animated" id="simple-present-1"></span>
+                        </div>
+                        <div class="sentence-structure" data-structure="simple-present-1"></div>
+                        <div class="example">Örn: I play</div>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="subject">He / She / It</div>
+                        <div class="animation-container">
+                            <span class="verb-animated" id="simple-present-2"></span>
+                        </div>
+                        <div class="sentence-structure" data-structure="simple-present-2"></div>
+                        <div class="example">Örn: He plays</div>
+                    </div>
+                </div>
+
+                <!-- Present Continuous -->
+                <div class="tense-card" data-tense="present-continuous">
+                    <div class="tense-header">
+                        <h3>Present Continuous</h3>
+                        <span class="tense-badge">Şimdiki Süregelen</span>
+                    </div>
+                    <div class="grammar-box">
+                        <p class="grammar-rule"><strong>Kural:</strong> am/is/are + Verb-ing</p>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="subject">I</div>
+                        <div class="animation-container">
+                            <span class="aux-word">am</span>
+                            <span class="verb-animated" id="present-continuous-1"></span>
+                        </div>
+                        <div class="sentence-structure" data-structure="present-continuous-1"></div>
+                        <div class="example">Örn: I am playing</div>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="subject">You / We / They</div>
+                        <div class="animation-container">
+                            <span class="aux-word">are</span>
+                            <span class="verb-animated" id="present-continuous-2"></span>
+                        </div>
+                        <div class="sentence-structure" data-structure="present-continuous-2"></div>
+                        <div class="example">Örn: You are playing</div>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="subject">He / She / It</div>
+                        <div class="animation-container">
+                            <span class="aux-word">is</span>
+                            <span class="verb-animated" id="present-continuous-3"></span>
+                        </div>
+                        <div class="sentence-structure" data-structure="present-continuous-3"></div>
+                        <div class="example">Örn: He is playing</div>
+                    </div>
+                </div>
+
+                <!-- Present Perfect -->
+                <div class="tense-card" data-tense="present-perfect">
+                    <div class="tense-header">
+                        <h3>Present Perfect</h3>
+                        <span class="tense-badge">Şimdiki Zamanın Kıyımı</span>
+                    </div>
+                    <div class="grammar-box">
+                        <p class="grammar-rule"><strong>Kural:</strong> have/has + Past Participle</p>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="subject">I / You / We / They</div>
+                        <div class="animation-container">
+                            <span class="aux-word">have</span>
+                            <span class="verb-animated" id="present-perfect-1"></span>
+                        </div>
+                        <div class="sentence-structure" data-structure="present-perfect-1"></div>
+                        <div class="example">Örn: I have played</div>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="subject">He / She / It</div>
+                        <div class="animation-container">
+                            <span class="aux-word">has</span>
+                            <span class="verb-animated" id="present-perfect-2"></span>
+                        </div>
+                        <div class="sentence-structure" data-structure="present-perfect-2"></div>
+                        <div class="example">Örn: He has played</div>
+                    </div>
+                </div>
+
+                <!-- Present Perfect Continuous -->
+                <div class="tense-card" data-tense="present-perfect-continuous">
+                    <div class="tense-header">
+                        <h3>Present Perfect Continuous</h3>
+                        <span class="tense-badge">Şimdiki Zamanın Sürekli Kıyımı</span>
+                    </div>
+                    <div class="grammar-box">
+                        <p class="grammar-rule"><strong>Kural:</strong> have/has + been + Verb-ing</p>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="subject">I / You / We / They</div>
+                        <div class="animation-container">
+                            <span class="aux-word">have been</span>
+                            <span class="verb-animated" id="present-perfect-continuous-1"></span>
+                        </div>
+                        <div class="sentence-structure" data-structure="present-perfect-continuous-1"></div>
+                        <div class="example">Örn: I have been playing</div>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="subject">He / She / It</div>
+                        <div class="animation-container">
+                            <span class="aux-word">has been</span>
+                            <span class="verb-animated" id="present-perfect-continuous-2"></span>
+                        </div>
+                        <div class="sentence-structure" data-structure="present-perfect-continuous-2"></div>
+                        <div class="example">Örn: He has been playing</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FUTURE TENSES (GELECEK ZAMANLAR) - SAĞ -->
+            <div class="time-column future-column">
+                <h2 class="column-title">🚀 FUTURE<br><small>Gelecek Zaman</small></h2>
+
+                <!-- Timeline Animation -->
+                <div class="timeline-container" data-column="future">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-marker">▼</div>
+                    <div class="timeline-points">
+                        <div class="timeline-point" data-tense="simple">
+                            <div class="point-dot"></div>
+                            <div class="point-label">Simple</div>
+                            <div class="point-aux">will</div>
+                            <div class="point-verb"></div>
+                        </div>
+                        <div class="timeline-point" data-tense="continuous">
+                            <div class="point-dot"></div>
+                            <div class="point-label">Continuous</div>
+                            <div class="point-aux">will be</div>
+                            <div class="point-verb"></div>
+                        </div>
+                        <div class="timeline-point" data-tense="perfect">
+                            <div class="point-dot"></div>
+                            <div class="point-label">Perfect</div>
+                            <div class="point-aux">will have</div>
+                            <div class="point-verb"></div>
+                        </div>
+                        <div class="timeline-point" data-tense="perfect-continuous">
+                            <div class="point-dot"></div>
+                            <div class="point-label">Perf. Cont.</div>
+                            <div class="point-aux">will have been</div>
+                            <div class="point-verb"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simple Future -->
+                <div class="tense-card" data-tense="simple-future">
+                    <div class="tense-header">
+                        <h3>Simple Future</h3>
+                        <span class="tense-badge">Basit Gelecek</span>
+                    </div>
+                    <div class="grammar-box">
+                        <p class="grammar-rule"><strong>Kural:</strong> will + Fiil tabansı</p>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="subject">All subjects</div>
+                        <div class="animation-container">
+                            <span class="aux-word">will</span>
+                            <span class="verb-animated" id="simple-future"></span>
+                        </div>
+                        <div class="sentence-structure" data-structure="simple-future"></div>
+                        <div class="example">Örn: I will play</div>
+                    </div>
+                </div>
+
+                <!-- Future Continuous -->
+                <div class="tense-card" data-tense="future-continuous">
+                    <div class="tense-header">
+                        <h3>Future Continuous</h3>
+                        <span class="tense-badge">Gelecekte Süregelen</span>
+                    </div>
+                    <div class="grammar-box">
+                        <p class="grammar-rule"><strong>Kural:</strong> will + be + Verb-ing</p>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="subject">All subjects</div>
+                        <div class="animation-container">
+                            <span class="aux-word">will be</span>
+                            <span class="verb-animated" id="future-continuous"></span>
+                        </div>
+                        <div class="sentence-structure" data-structure="future-continuous"></div>
+                        <div class="example">Örn: I will be playing</div>
+                    </div>
+                </div>
+
+                <!-- Future Perfect -->
+                <div class="tense-card" data-tense="future-perfect">
+                    <div class="tense-header">
+                        <h3>Future Perfect</h3>
+                        <span class="tense-badge">Gelecek Zamanın Kıyımı</span>
+                    </div>
+                    <div class="grammar-box">
+                        <p class="grammar-rule"><strong>Kural:</strong> will + have + Past Participle</p>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="subject">All subjects</div>
+                        <div class="animation-container">
+                            <span class="aux-word">will have</span>
+                            <span class="verb-animated" id="future-perfect"></span>
+                        </div>
+                        <div class="sentence-structure" data-structure="future-perfect"></div>
+                        <div class="example">Örn: I will have played</div>
+                    </div>
+                </div>
+
+                <!-- Future Perfect Continuous -->
+                <div class="tense-card" data-tense="future-perfect-continuous">
+                    <div class="tense-header">
+                        <h3>Future Perfect Continuous</h3>
+                        <span class="tense-badge">Gelecek Zamanın Sürekli Kıyımı</span>
+                    </div>
+                    <div class="grammar-box">
+                        <p class="grammar-rule"><strong>Kural:</strong> will + have + been + Verb-ing</p>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="subject">All subjects</div>
+                        <div class="animation-container">
+                            <span class="aux-word">will have been</span>
+                            <span class="verb-animated" id="future-perfect-continuous"></span>
+                        </div>
+                        <div class="sentence-structure" data-structure="future-perfect-continuous"></div>
+                        <div class="example">Örn: I will have been playing</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Three Column Layout -->
+
+        <!-- Info Section -->
+        <div class="info-section">
+            <h4>💡 İpucu:</h4>
+            <p>Fiil tabansını (infinitive) giriniz. Örneğin: play, eat, go, make, be...</p>
+            <p>Sistem otomatik olarak tüm çekimlerini oluşturacaktır.</p>
+        </div>
+    </div>
+
+    <script src="verbs.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
