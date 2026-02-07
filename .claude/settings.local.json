@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:dictionary.cambridge.org)",
+      "WebFetch(domain:www.englishpage.com)",
+      "WebFetch(domain:www.gingersoftware.com)",
+      "WebFetch(domain:www.learnenglishteam.com)"
+    ]
+  }
+}

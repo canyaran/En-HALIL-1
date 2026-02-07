@@ -3,29 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İngilizce 12 Tense Animasyon Öğretici</title>
+    <title>İngilizce 12 Tense Animasyon Öğreticisi</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1>🎬 İngilizce Tense Animasyon Öğretici</h1>
-            <p>Kelime giriniz ve 12 farklı tense'i animasyonlu olarak görünüz</p>
+            <h1>🎬 İngilizce Tense Animasyon Öğreticisi</h1>
+            <p>Kelime giriniz; 12 farklı tense'i animasyonlu olarak görün.</p>
         </header>
 
         <!-- Input Section -->
         <div class="input-section">
             <div class="input-group">
-                <label for="verbInput">Fiil Giriniz (İnfinitive):</label>
+                <label for="verbInput">Fiil Giriniz (Infinitive / Mastar):</label>
                 <input
                     type="text"
                     id="verbInput"
                     placeholder="Örn: play, eat, go, make..."
+                    list="verbList"
                     autocomplete="off"
                 >
                 <button id="searchBtn" class="btn-primary">Çekimle</button>
             </div>
+            <div class="input-group sub-options">
+                <label for="objectInput">Nesne (EN):</label>
+                <input type="text" id="objectInput" placeholder="Örn: football, homework">
+                <label for="objectTrInput">Nesne (TR):</label>
+                <input type="text" id="objectTrInput" placeholder="Örn: futbol, ödev">
+            </div>
+            <div class="input-group sub-options">
+                <label for="timeInput">Zaman (EN):</label>
+                <input type="text" id="timeInput" placeholder="Boş bırak: otomatik">
+                <label for="timeTrInput">Zaman (TR):</label>
+                <input type="text" id="timeTrInput" placeholder="Boş bırak: otomatik">
+            </div>
+            <div class="input-group sub-options">
+                <label for="verbTrInput">Fiil (TR):</label>
+                <input type="text" id="verbTrInput" placeholder="Örn: oyna, ye, git, yap">
+                <label for="youForm">You =</label>
+                <select id="youForm">
+                    <option value="sen">Sen</option>
+                    <option value="siz">Siz</option>
+                </select>
+            </div>
+            <div class="verb-picker">
+                <div class="verb-picker-title">Fiil Listesi (TR, A–Z)</div>
+                <div class="verb-letters" id="verbTrLetters"></div>
+                <div class="verb-buttons" id="verbTrButtons"></div>
+                <div class="verb-match" id="verbMatch" style="display:none;">
+                    <div class="verb-match-title">Eşleşen EN fiiller:</div>
+                    <div class="verb-match-list" id="verbMatchList"></div>
+                </div>
+            </div>
+            <div class="quick-picks">
+                <span class="quick-label">Hızlı Seçimler:</span>
+                <button class="chip" type="button" data-target="objectInput" data-target-tr="objectTrInput" data-value="football" data-value-tr="futbol">football / futbol</button>
+                <button class="chip" type="button" data-target="objectInput" data-target-tr="objectTrInput" data-value="homework" data-value-tr="ödev">homework / ödev</button>
+                <button class="chip" type="button" data-target="objectInput" data-target-tr="objectTrInput" data-value="coffee" data-value-tr="kahve">coffee / kahve</button>
+                <button class="chip" type="button" data-target="timeInput" data-target-tr="timeTrInput" data-value="yesterday" data-value-tr="dün">yesterday / dün</button>
+                <button class="chip" type="button" data-target="timeInput" data-target-tr="timeTrInput" data-value="now" data-value-tr="şu anda">now / şu anda</button>
+                <button class="chip" type="button" data-target="timeInput" data-target-tr="timeTrInput" data-value="tomorrow" data-value-tr="yarın">tomorrow / yarın</button>
+            </div>
+            <div class="verb-picker">
+                <div class="verb-picker-title">Fiil Listesi (A–Z)</div>
+                <div class="verb-letters" id="verbLetters"></div>
+                <div class="verb-buttons" id="verbButtons"></div>
+            </div>
+            <datalist id="verbList"></datalist>
             <div id="errorMsg" class="error-msg"></div>
         </div>
 
@@ -49,43 +95,26 @@
             </div>
         </div>
 
+        <!-- Tense Summary (Static) -->
+        <div class="tense-strip">
+            <div class="tense-item">
+                <div class="tense-label">PAST / Geçmiş</div>
+                <div class="tense-value" id="tensePast">-</div>
+            </div>
+            <div class="tense-item">
+                <div class="tense-label">PRESENT / Şimdiki</div>
+                <div class="tense-value" id="tensePresent">-</div>
+            </div>
+            <div class="tense-item">
+                <div class="tense-label">FUTURE / Gelecek</div>
+                <div class="tense-value" id="tenseFuture">-</div>
+            </div>
+        </div>
+
         <!-- Three Column One-Page Layout -->
         <div class="three-column-container">
             <!-- PAST TENSES (GEÇMİŞ ZAMANLAR) - SOL -->
             <div class="time-column past-column">
-                <h2 class="column-title">⏰ PAST<br><small>Geçmiş Zaman</small></h2>
-
-                <!-- Timeline Animation -->
-                <div class="timeline-container" data-column="past">
-                    <div class="timeline-line"></div>
-                    <div class="timeline-marker">▼</div>
-                    <div class="timeline-points">
-                        <div class="timeline-point" data-tense="simple">
-                            <div class="point-dot"></div>
-                            <div class="point-label">Simple</div>
-                            <div class="point-aux"></div>
-                            <div class="point-verb"></div>
-                        </div>
-                        <div class="timeline-point" data-tense="continuous">
-                            <div class="point-dot"></div>
-                            <div class="point-label">Continuous</div>
-                            <div class="point-aux">was/were</div>
-                            <div class="point-verb"></div>
-                        </div>
-                        <div class="timeline-point" data-tense="perfect">
-                            <div class="point-dot"></div>
-                            <div class="point-label">Perfect</div>
-                            <div class="point-aux">had</div>
-                            <div class="point-verb"></div>
-                        </div>
-                        <div class="timeline-point" data-tense="perfect-continuous">
-                            <div class="point-dot"></div>
-                            <div class="point-label">Perf. Cont.</div>
-                            <div class="point-aux">had been</div>
-                            <div class="point-verb"></div>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Simple Past -->
                 <div class="tense-card" data-tense="simple-past">
@@ -94,7 +123,7 @@
                         <span class="tense-badge">Basit Geçmiş</span>
                     </div>
                     <div class="grammar-box">
-                        <p class="grammar-rule"><strong>Kural:</strong> Fiil tabansı + -ed (düzenli) veya değişim (düzensiz)</p>
+                        <p class="grammar-rule"><strong>Kural:</strong> Fiil tabanı + -ed (düzenli) veya değişim (düzensiz)</p>
                     </div>
                     <div class="sentence-box">
                         <div class="subject">All subjects</div>
@@ -139,7 +168,7 @@
                 <div class="tense-card" data-tense="past-perfect">
                     <div class="tense-header">
                         <h3>Past Perfect</h3>
-                        <span class="tense-badge">Geçmiş Zamanın Kıyımı</span>
+                        <span class="tense-badge">Geçmişin Hikayesi</span>
                     </div>
                     <div class="grammar-box">
                         <p class="grammar-rule"><strong>Kural:</strong> had + Past Participle</p>
@@ -159,7 +188,7 @@
                 <div class="tense-card" data-tense="past-perfect-continuous">
                     <div class="tense-header">
                         <h3>Past Perfect Continuous</h3>
-                        <span class="tense-badge">Geçmiş Zamanın Sürekli Kıyımı</span>
+                        <span class="tense-badge">Geçmişte Süreklilik</span>
                     </div>
                     <div class="grammar-box">
                         <p class="grammar-rule"><strong>Kural:</strong> had + been + Verb-ing</p>
@@ -178,48 +207,15 @@
 
             <!-- PRESENT TENSES (ŞİMDİKİ ZAMANLAR) - ORTA -->
             <div class="time-column present-column">
-                <h2 class="column-title">⏱️ PRESENT<br><small>Şimdiki Zaman</small></h2>
-
-                <!-- Timeline Animation -->
-                <div class="timeline-container" data-column="present">
-                    <div class="timeline-line"></div>
-                    <div class="timeline-marker">▼</div>
-                    <div class="timeline-points">
-                        <div class="timeline-point" data-tense="simple">
-                            <div class="point-dot"></div>
-                            <div class="point-label">Simple</div>
-                            <div class="point-aux"></div>
-                            <div class="point-verb"></div>
-                        </div>
-                        <div class="timeline-point" data-tense="continuous">
-                            <div class="point-dot"></div>
-                            <div class="point-label">Continuous</div>
-                            <div class="point-aux">am/is/are</div>
-                            <div class="point-verb"></div>
-                        </div>
-                        <div class="timeline-point" data-tense="perfect">
-                            <div class="point-dot"></div>
-                            <div class="point-label">Perfect</div>
-                            <div class="point-aux">have/has</div>
-                            <div class="point-verb"></div>
-                        </div>
-                        <div class="timeline-point" data-tense="perfect-continuous">
-                            <div class="point-dot"></div>
-                            <div class="point-label">Perf. Cont.</div>
-                            <div class="point-aux">have/has been</div>
-                            <div class="point-verb"></div>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Simple Present -->
                 <div class="tense-card" data-tense="simple-present">
                     <div class="tense-header">
                         <h3>Simple Present</h3>
-                        <span class="tense-badge">Basit Şimdiki</span>
+                        <span class="tense-badge">Geniş Zaman</span>
                     </div>
                     <div class="grammar-box">
-                        <p class="grammar-rule"><strong>Kural:</strong> Fiil tabansı (3. tekil şahısta -s, -es eklenir)</p>
+                        <p class="grammar-rule"><strong>Kural:</strong> Fiil tabanı (3. tekil şahısta -s, -es eklenir)</p>
                     </div>
                     <div class="sentence-box">
                         <div class="subject">I / You / We / They</div>
@@ -243,7 +239,7 @@
                 <div class="tense-card" data-tense="present-continuous">
                     <div class="tense-header">
                         <h3>Present Continuous</h3>
-                        <span class="tense-badge">Şimdiki Süregelen</span>
+                        <span class="tense-badge">Şimdiki Zaman</span>
                     </div>
                     <div class="grammar-box">
                         <p class="grammar-rule"><strong>Kural:</strong> am/is/are + Verb-ing</p>
@@ -281,7 +277,7 @@
                 <div class="tense-card" data-tense="present-perfect">
                     <div class="tense-header">
                         <h3>Present Perfect</h3>
-                        <span class="tense-badge">Şimdiki Zamanın Kıyımı</span>
+                        <span class="tense-badge">Yakın Geçmiş</span>
                     </div>
                     <div class="grammar-box">
                         <p class="grammar-rule"><strong>Kural:</strong> have/has + Past Participle</p>
@@ -310,7 +306,7 @@
                 <div class="tense-card" data-tense="present-perfect-continuous">
                     <div class="tense-header">
                         <h3>Present Perfect Continuous</h3>
-                        <span class="tense-badge">Şimdiki Zamanın Sürekli Kıyımı</span>
+                        <span class="tense-badge">Yakın Geçmişte Süreklilik</span>
                     </div>
                     <div class="grammar-box">
                         <p class="grammar-rule"><strong>Kural:</strong> have/has + been + Verb-ing</p>
@@ -338,39 +334,6 @@
 
             <!-- FUTURE TENSES (GELECEK ZAMANLAR) - SAĞ -->
             <div class="time-column future-column">
-                <h2 class="column-title">🚀 FUTURE<br><small>Gelecek Zaman</small></h2>
-
-                <!-- Timeline Animation -->
-                <div class="timeline-container" data-column="future">
-                    <div class="timeline-line"></div>
-                    <div class="timeline-marker">▼</div>
-                    <div class="timeline-points">
-                        <div class="timeline-point" data-tense="simple">
-                            <div class="point-dot"></div>
-                            <div class="point-label">Simple</div>
-                            <div class="point-aux">will</div>
-                            <div class="point-verb"></div>
-                        </div>
-                        <div class="timeline-point" data-tense="continuous">
-                            <div class="point-dot"></div>
-                            <div class="point-label">Continuous</div>
-                            <div class="point-aux">will be</div>
-                            <div class="point-verb"></div>
-                        </div>
-                        <div class="timeline-point" data-tense="perfect">
-                            <div class="point-dot"></div>
-                            <div class="point-label">Perfect</div>
-                            <div class="point-aux">will have</div>
-                            <div class="point-verb"></div>
-                        </div>
-                        <div class="timeline-point" data-tense="perfect-continuous">
-                            <div class="point-dot"></div>
-                            <div class="point-label">Perf. Cont.</div>
-                            <div class="point-aux">will have been</div>
-                            <div class="point-verb"></div>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Simple Future -->
                 <div class="tense-card" data-tense="simple-future">
@@ -379,7 +342,7 @@
                         <span class="tense-badge">Basit Gelecek</span>
                     </div>
                     <div class="grammar-box">
-                        <p class="grammar-rule"><strong>Kural:</strong> will + Fiil tabansı</p>
+                        <p class="grammar-rule"><strong>Kural:</strong> will + Fiil tabanı</p>
                     </div>
                     <div class="sentence-box">
                         <div class="subject">All subjects</div>
@@ -396,7 +359,7 @@
                 <div class="tense-card" data-tense="future-continuous">
                     <div class="tense-header">
                         <h3>Future Continuous</h3>
-                        <span class="tense-badge">Gelecekte Süregelen</span>
+                        <span class="tense-badge">Gelecekte Süreklilik</span>
                     </div>
                     <div class="grammar-box">
                         <p class="grammar-rule"><strong>Kural:</strong> will + be + Verb-ing</p>
@@ -416,7 +379,7 @@
                 <div class="tense-card" data-tense="future-perfect">
                     <div class="tense-header">
                         <h3>Future Perfect</h3>
-                        <span class="tense-badge">Gelecek Zamanın Kıyımı</span>
+                        <span class="tense-badge">Gelecekte Tamamlanmış</span>
                     </div>
                     <div class="grammar-box">
                         <p class="grammar-rule"><strong>Kural:</strong> will + have + Past Participle</p>
@@ -436,7 +399,7 @@
                 <div class="tense-card" data-tense="future-perfect-continuous">
                     <div class="tense-header">
                         <h3>Future Perfect Continuous</h3>
-                        <span class="tense-badge">Gelecek Zamanın Sürekli Kıyımı</span>
+                        <span class="tense-badge">Gelecekte Süreklilik (Perfect)</span>
                     </div>
                     <div class="grammar-box">
                         <p class="grammar-rule"><strong>Kural:</strong> will + have + been + Verb-ing</p>
@@ -458,8 +421,10 @@
         <!-- Info Section -->
         <div class="info-section">
             <h4>💡 İpucu:</h4>
-            <p>Fiil tabansını (infinitive) giriniz. Örneğin: play, eat, go, make, be...</p>
+            <p>Fiil tabanını (infinitive / mastar) giriniz. Örneğin: play, eat, go, make, be...</p>
             <p>Sistem otomatik olarak tüm çekimlerini oluşturacaktır.</p>
+            <p>Olumsuz ve soru cümleleri otomatik oluşturulur.</p>
+            <p>Türkçe karşılıklar yaklaşık üretildiği için dilbilgisi düzeltmesi gerekebilir.</p>
         </div>
     </div>
 
